@@ -14,7 +14,7 @@ int main()
     char email[100][100];
     int ddd[100];
     int tel[100];
-    int escolha, escolhaEditar, contUser = 0;
+    int escolha, escolhaEditar, escolhaExcluir, contUser = 0;
     char nomeAux[100];
     int i;
     int indiceCadastro = -1;
@@ -144,6 +144,7 @@ int main()
             }
             break;
         case 4:
+            indiceCadastro = -1;
             printf("===================== EXCLUIR CADASTRO ===================\n");
             printf("Entre com o nome a ser verificado: ");
             scanf(" %[^\n]", nomeAux);
@@ -155,25 +156,49 @@ int main()
                     break;
                 }
             }
+
             if (indiceCadastro != -1)
             {
                 printf("===================== USUARIO %d ======================\n", i + 1);
-                printf("| NOME: %s\n", nome[i]);
-                printf("| TELEFONE: (%d) %d-%.4d\n", ddd[i], tel[i] / 10000, tel[i] % 10000);
-                printf("| E-MAIL: %s\n", email[i]);
+                printf("| NOME: %s\n", nome[indiceCadastro]);
+                printf("| TELEFONE: (%d) %d-%.4d\n", ddd[indiceCadastro], tel[indiceCadastro] / 10000, tel[indiceCadastro] % 10000);
+                printf("| E-MAIL: %s\n", email[indiceCadastro]);
                 printf("======================================================\n\n");
-                printf("Certeza que deseja excluir o usuario? ");
+                printf("Tem certeza que deseja excluir?\n");
+                printf("1- Sim\n");
+                printf("2- Nao\n");
+                do
+                {
+                    scanf("%d", &escolhaExcluir);
+                } while (escolhaExcluir != 1 && escolhaExcluir != 2);
+
+                if (escolhaExcluir == 1)
+                {
+                    for (i = indiceCadastro; i < contUser - 1; i++)
+                    {
+                        strcpy(nome[i], nome[i + 1]);
+                        ddd[i] = ddd[i + 1];
+                        tel[i] = tel[i + 1];
+                        strcpy(email[i], email[i + 1]);
+                    }
+                    contUser--;
+                    printf("Usuario excluido!\n");
+                }
+                else
+                {
+                    printf("Usuario nao excluido!\n");
+                }
             }
             else
             {
-                printf("Usuario inexistente!");
+                printf("Usuario inexistente!\n");
             }
             break;
         case 5:
             printf("======================== SOBRE =======================\n");
             printf("| Este software foi desenvolvido para fins didaticos.|\n");
-            printf("| AUTOR: Wendi Ramos                                 |\n");
-            printf("| DATA: 02/09/2022                                   |\n");
+            printf("| AUTOR: Professor Marques e Wendi Ramos             |\n");
+            printf("| DATA: 06/09/2022                                   |\n");
             printf("======================================================\n");
             break;
         default:
