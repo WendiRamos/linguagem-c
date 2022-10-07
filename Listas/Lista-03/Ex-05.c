@@ -4,6 +4,7 @@ int i;
 typedef struct sCarros
 {
     char placa[15];
+    char modelo [50];
     char cor[15];
     int ano;
 } Carro;
@@ -15,6 +16,9 @@ void cadastrar(Carro *pCar, int contCar)
 
     printf("Placa: ");
     scanf("%s", pCar[contCar].placa);
+
+    printf("Modelo: ");
+    scanf("%s", pCar[contCar].modelo);
 
     printf("Cor: ");
     scanf("%s", pCar[contCar].cor);
@@ -46,6 +50,7 @@ void editar(Carro *pCar, int contCar)
     {
         printf("===================== VEICULO %d =====================\n", posicao + 1);
         printf("| PLACA: %s\n", pCar[posicao].placa);
+        printf("| PLACA: %s\n", pCar[posicao].modelo);
         printf("| COR:   %s\n", pCar[posicao].cor);
         printf("| ANO:   %d\n", pCar[posicao].ano);
         printf("======================================================\n\n");
@@ -54,6 +59,7 @@ void editar(Carro *pCar, int contCar)
 
         printf("======================== MENU ========================\n");
         printf("| 1 ........................................... PLACA |\n");
+        printf("| 1 .......................................... MODELO |\n");
         printf("| 2 ............................................. COR |\n");
         printf("| 3 ............................................. ANO |\n");
         printf("| Outro .................................... CANCELAR |\n");
@@ -66,11 +72,15 @@ void editar(Carro *pCar, int contCar)
             printf("PLACA: ");
             scanf("%s", pCar[posicao].placa);
             break;
-        case 2:
+             case 2:
+            printf("MODELO: ");
+            scanf("%s", pCar[posicao].modelo);
+            break;
+        case 3:
             printf("COR: ");
             scanf("%s", pCar[posicao].cor);
             break;
-        case 3:
+        case 4:
             printf("ANO: ");
             scanf("%d", &pCar[posicao].ano);
             break;
@@ -91,6 +101,7 @@ void listar(Carro *pCar, int contCar)
         {
             printf("===================== VEICULO %d =====================\n", i + 1);
             printf("| PLACA: %s\n", pCar[i].placa);
+            printf("| MODELO: %s\n", pCar[i].modelo);
             printf("| COR:   %s\n", pCar[i].cor);
             printf("| ANO:   %d\n", pCar[i].ano);
             printf("======================================================\n\n");
